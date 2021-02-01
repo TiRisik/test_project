@@ -1,28 +1,24 @@
 from Pice_board.Moves import Moves
 
-class King(Moves):
+class Hores(Moves):
     def __init__(self, color, position):
-        self.name = 'King'
-        super(King, self).__init__(color, position)
+        self.name = 'Hores'
+        super(Hores, self).__init__(color, position)
         if self.color == 'w':
-            self.image = 'images/white_king.png'
+            self.image = 'images/white_hores.png'
         else:
-            self.image = 'images/black_king.png'
+            self.image = 'images/black_hores.png'
 
-        self.value = 100
+        self.value = 3
 
     def get_possible_moves(self, board):
+        poss_moves = [(1, 2), (2, 1), (-1, 2), (-2, 1), (2, -1), (1, -2), (-1, -2), (-2, -1)]
         moves = []
-        for i in range(-1, 2):
-            for e in range(-1, 2):
-                space = self.position[0] + e, self.position[1] + i
-                if space[0] < 0 or space[0] > 7 or space[1] < 0 or space[1] > 7:
-                    continue
-                piece = board[space[0]][space[1]]
-                if not piece or self.is_opponent(piece):
-                    moves.append(space)
-
+        for move in poss_moves:
+            pos = self.position[0] + move[0], self.position[1] + move[1]
+            if pos[0] < 0 or pos[0] > 7 or pos[1] < 0 or pos[1] > 7:
+                continue
+            piece = board[pos[0]][pos[1]]
+            if not piece or self.is_opponent(piece):
+                moves.append(pos)
         return moves
-
-    def is_opponent(self, piece):
-        return piece.color == self.opponent_color
