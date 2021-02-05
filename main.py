@@ -25,6 +25,8 @@ if __name__ == '__main__':
                 elif active_chess:
                     imch.update(active_chess, coordinate_chess)
                     imch.select_photo(screen)
+                    board.render(screen)
         imch.select_photo(screen)
+        draw_letters_and_numbers(screen)
         pygame.display.flip()
     pygame.quit()
