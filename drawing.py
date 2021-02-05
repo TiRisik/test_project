@@ -1,5 +1,8 @@
 import pygame
 import os
+from Pice_board.Castle import Castle
+
+
 
 
 def load_image(name):
@@ -73,6 +76,7 @@ class ImageChess:
                                                  black_coordinate[j][1][1] * 100 + 10))
 
     def update(self, active_chess, coordinate_chess):
+        board = Board()
         if active_chess in white_coordinate:
             white_coordinate[coordinate_chess] = [white_coordinate[active_chess][0], coordinate_chess]
             del white_coordinate[active_chess]
@@ -81,11 +85,13 @@ class ImageChess:
             del black_coordinate[active_chess]
 
 
+
+
 class Board:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-        self.board = [[0] * width for _ in range(height)]
+    def __init__(self):
+        self.width = 8
+        self.height = 8
+        self.board = [[0] * 8 for _ in range(8)]
         self.left = 0
         self.top = 0
         self.cell_size = 100
@@ -102,6 +108,7 @@ class Board:
                 y = self.top
                 lens = self.cell_size
                 if (i % 2 == 0 and j % 2 == 0) or (i % 2 != 0 and j % 2 != 0):
+                    pygame.draw.rect(screen, (255, 255, 255), (x + 1, y + 1, lens - 2, lens - 2), 0)
                     pygame.draw.rect(screen, (0, 0, 0), (x, y, lens, lens), 1)
                 else:
                     pygame.draw.rect(screen, (31, 20, 10), (x, y, lens, lens), 0)
@@ -110,7 +117,7 @@ class Board:
             self.top = self.top + self.cell_size
         self.top = self.top - self.cell_size * len(self.board)
 
-    def get_coordinate(self, mouse_pos, screen):
+    def get_coordinate(self, mouse_pos):
         x, y = mouse_pos
         x1 = (x - self.left) // self.cell_size
         y1 = (y - self.top) // self.cell_size
@@ -125,9 +132,9 @@ class Board:
         self.board[pos[0]][pos[1]] = None
         if not piece.has_moved:
             piece.has_moved = True
-
         if piece_to_take:
             return piece_to_take
         return None
+
 
 

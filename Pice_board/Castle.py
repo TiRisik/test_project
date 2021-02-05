@@ -1,10 +1,10 @@
 from Pice_board.Moves import Moves
 
 
-class Rook(Moves):
+class Castle(Moves):
     def __init__(self, color, position):
         self.name = 'Rook'
-        super(Rook, self).__init__(color, position)
+        super(Castle, self).__init__(color, position)
         if self.color == 'w':
             self.image = 'images/white_rook.png'
         else:
