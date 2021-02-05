@@ -117,3 +117,15 @@ class Board:
         y1 = (y - self.top) // self.cell_size
         coordinate = (x1, y1)
         return coordinate
+        def move_piece(self, piece, new_position):
+        pos = piece.position
+        piece_to_take = self.board[new_position[0]][new_position[1]]
+        piece.move(new_position)
+        self.board[new_position[0]][new_position[1]] = piece
+        self.board[pos[0]][pos[1]] = None
+        if not piece.has_moved:
+            piece.has_moved = True
+
+        if piece_to_take:
+            return piece_to_take
+        return None
