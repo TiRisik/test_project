@@ -8,7 +8,7 @@ screen = pygame.display.set_mode(size)
 
 
 if __name__ == '__main__':
-    board = Board(8, 8)
+    board = Board()
     running = True
     screen.fill(pygame.Color('white'))
     board.render(screen)
@@ -19,7 +19,7 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                coordinate_chess = board.get_coordinate(event.pos, screen)
+                coordinate_chess = board.get_coordinate(event.pos)
                 if coordinate_chess in white_coordinate or coordinate_chess in black_coordinate:
                     active_chess = coordinate_chess
                 elif active_chess:
