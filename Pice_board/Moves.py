@@ -24,7 +24,6 @@ class Moves:
         return piece.color == self.opponent_color
 
     def get_possible_straight_line_moves(self, board):
-        # Does not affect anything. Returns list of moves
         moves = []
         curr_pos = self.position[0], self.position[1] + 1
         while curr_pos[1] <= 7:
@@ -81,7 +80,6 @@ class Moves:
         return moves
 
     def get_possible_diagonal_moves(self, board):
-        # Does not affect anything. Returns list of moves
         moves = []
         curr_pos = self.position[0] + 1, self.position[1] + 1
         while curr_pos[1] <= 7 and curr_pos[0] <= 7:
