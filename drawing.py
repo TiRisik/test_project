@@ -102,6 +102,7 @@ class Board:
                 y = self.top
                 lens = self.cell_size
                 if (i % 2 == 0 and j % 2 == 0) or (i % 2 != 0 and j % 2 != 0):
+                    pygame.draw.rect(screen, (255, 255, 255), (x + 1, y + 1, lens - 2, lens - 2), 0)
                     pygame.draw.rect(screen, (0, 0, 0), (x, y, lens, lens), 1)
                 else:
                     pygame.draw.rect(screen, (31, 20, 10), (x, y, lens, lens), 0)
@@ -110,7 +111,7 @@ class Board:
             self.top = self.top + self.cell_size
         self.top = self.top - self.cell_size * len(self.board)
 
-    def get_coordinate(self, mouse_pos, screen):
+    def get_coordinate(self, mouse_pos):
         x, y = mouse_pos
         x1 = (x - self.left) // self.cell_size
         y1 = (y - self.top) // self.cell_size
