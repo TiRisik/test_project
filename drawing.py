@@ -135,6 +135,3 @@ class Board:
         if piece_to_take:
             return piece_to_take
         return None
-
-
-
