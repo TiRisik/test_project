@@ -1,7 +1,7 @@
 import pygame
 import os
-from MarkAntonovich.Board import Board
-from MarkAntonovich.Ceil import Ceil
+from Board import Board
+from Ceil import Ceil
 
 active_chess = None
 pygame.init()

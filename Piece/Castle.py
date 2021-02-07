@@ -1,4 +1,4 @@
-from MarkAntonovich.Piece import Piece
+from Piece.Piece import Piece
 
 
 class Castle(Piece):
