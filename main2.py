@@ -9,6 +9,8 @@ active_chess = None
 pygame.init()
 size = width, height = 800, 800
 screen = pygame.display.set_mode(size)
+active_color = 'WHITE'
+passive_color = 'BLACK'
 
 
 def load_image(name):
@@ -50,8 +52,10 @@ if __name__ == '__main__':
                 figure = board.get_figure(selected_coordinate)
                 if not active_chess or k == 1:
                     if figure:
-                        active_chess = figure
-                        k = 0
+                        if figure.color == active_color:
+                            active_chess = figure
+                            k = 0
+                            active_color, passive_color = passive_color, active_color
                 else:
                     if not figure:
                         board.move_figure(active_chess, selected_coordinate, board)
@@ -61,24 +65,3 @@ if __name__ == '__main__':
                         k = 1
         pygame.display.flip()
     pygame.quit()
-
-    #
-    # board.render(screen)
-    # draw_letters_and_numbers(screen)
-    # imch = ImageChess()
-    # while running:
-    #     for event in pygame.event.get():
-    #         if event.type == pygame.QUIT:
-    #             running = False
-    #         if event.type == pygame.MOUSEBUTTONDOWN:
-    #             coordinate_chess = board.get_coordinate(event.pos)
-    #             if coordinate_chess in white_coordinate or coordinate_chess in black_coordinate:
-    #                 active_chess = coordinate_chess
-    #             elif active_chess:
-    #                 imch.update(active_chess, coordinate_chess)
-    #                 imch.select_photo(screen)
-    #                 board.render(screen)
-    #     imch.select_photo(screen)
-    #     draw_letters_and_numbers(screen)
-    #     pygame.display.flip()
-    # pygame.quit()
