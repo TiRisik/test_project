@@ -45,8 +45,8 @@ class Board:
     def get_board(self):
         return self.board
 
-    def move_figure(self, figure, to_position):
+    def move_figure(self, figure, to_position, board):
         previous_x, previous_y = figure.x, figure.y
-        figure.move(to_position)
+        figure.move(to_position, board)
         self.board[previous_x][previous_y] = None
         self.board[figure.x][figure.y] = figure

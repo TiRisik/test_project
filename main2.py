@@ -3,6 +3,7 @@ import os
 from Board import Board
 from Ceil import Ceil
 
+
 k = 0
 active_chess = None
 pygame.init()
@@ -53,7 +54,10 @@ if __name__ == '__main__':
                         k = 0
                 else:
                     if not figure:
-                        board.move_figure(active_chess, selected_coordinate)
+                        board.move_figure(active_chess, selected_coordinate, board)
+                        k = 1
+                    else:
+                        board.move_figure(active_chess, selected_coordinate, board)
                         k = 1
         pygame.display.flip()
     pygame.quit()

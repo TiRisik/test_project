@@ -9,13 +9,10 @@ class Piece:
     def is_same(self, color):
         return self.color == color
 
-    def move(self, position):
-        if self.can_move(position):
+    def move(self, position, board):
+        if self.can_move(position, board):
             self.x = position.x
             self.y = position.y
 
     def get_image(self):
         return self.image
-
-    def can_move(self, position):
-        pass
