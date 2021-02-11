@@ -1,7 +1,19 @@
 from Piece.Piece import Piece
-
+from Ceil import Ceil
 
 class King(Piece):
 
     def can_move(self, position, board):
-        return True
+        if position.y - self.y == 1 or position.x - self.x == -1:
+            opponent = board.get_figure(Ceil(position.x, position.y))
+            if opponent:
+                if self.color == opponent.color:
+                    return False
+            return True
+        if position.y - self.y == -1 or position.x - self.x == 1:
+            opponent = board.get_figure(Ceil(position.x, position.y))
+            if opponent:
+
+                if self.color == opponent.color:
+                    return False
+            return True
