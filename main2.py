@@ -3,7 +3,8 @@ import os
 from Board import Board
 from Ceil import Ceil
 
-
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
 k = 0
 current_directory = os.path.abspath(os.getcwd())
 active_chess = None
@@ -12,6 +13,24 @@ size = width, height = 800, 800
 screen = pygame.display.set_mode(size)
 active_color = 'WHITE'
 passive_color = 'BLACK'
+
+
+def draw_letters_and_numbers(screen):
+    font = pygame.font.Font(None, 30)
+    g, k1 = 0, 1
+    for i in range(2):
+        if i:
+            texts = letters.copy()
+            x, y = 80, 780
+        else:
+            texts = numbers.copy()
+            x, y = 5, 5
+        for j in range(8):
+            text = font.render(str(texts[j]), True, (128, 128, 128))
+            text_x = x + j * 100 * g
+            text_y = y + j * 100 * k1
+            screen.blit(text, (text_x, text_y))
+        g, k1 = 1, 0
 
 
 def load_image(name):
@@ -44,7 +63,6 @@ if __name__ == '__main__':
                                  (coordinate, size), 0)
                 if figure := board.get_figure(Ceil(i, j)):
                     screen.blit(load_image(figure.get_image()), (coordinate[0] + 10, coordinate[1] + 10))
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -58,11 +76,8 @@ if __name__ == '__main__':
                             k = 0
                             active_color, passive_color = passive_color, active_color
                 else:
-                    if not figure:
-                        board.move_figure(active_chess, selected_coordinate, board)
-                        k = 1
-                    else:
-                        board.move_figure(active_chess, selected_coordinate, board)
-                        k = 1
+                    board.move_figure(active_chess, selected_coordinate, board)
+                    k = 1
+        draw_letters_and_numbers(screen)
         pygame.display.flip()
     pygame.quit()
