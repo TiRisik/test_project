@@ -8,6 +8,7 @@ class Bishop(Piece):
         if first < second and third < fourth:
             i1, i2 = first, second
             j1, j2 = third, fourth
+            #hellonumbertwo
         elif first > second and third < fourth:
             i1, i2 = second + 1, first + 1
             j1, j2 = third, fourth
