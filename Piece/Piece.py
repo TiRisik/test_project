@@ -4,7 +4,6 @@ class Piece:
         self.y = None
         self.image = image
         self.color = color
-        pass
 
     def is_same(self, color):
         return self.color == color
@@ -16,3 +15,6 @@ class Piece:
 
     def get_image(self):
         return self.image
+
+    def can_move(self, position, board):
+        pass

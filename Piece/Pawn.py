@@ -3,41 +3,26 @@ from Ceil import Ceil
 
 
 class Pawn(Piece):
-    def can_move(self, position, board):
-        if self.y == 1:
-            if position.y - self.y == 1 and position.x - self.x == 0 or position.y - self.y == 2 and position.x - self.x == 0:
-                opponent = board.get_figure(Ceil(position.x, position.y))
-                if opponent:
-                    if self.color == opponent.color:
-                        return False
-                    if self.color != opponent.color:
-                        return False
-                return True
-        else:
-            if position.y - self.y == 1 and position.x - self.x == 0:
-                opponent = board.get_figure(Ceil(position.x, position.y))
-                if opponent:
-                    if self.color == opponent.color:
-                        return False
-                    if self.color != opponent.color:
-                        return False
-                return True
-        if self.y == 6:
-            if position.y - self.y == -1 and position.x - self.x == 0 or  position.y - self.y == -2 and position.x - self.x == 0:
-                opponent = board.get_figure(Ceil(position.x, position.y))
-                if opponent:
-                    if self.color == opponent.color:
-                        return False
-                    if self.color != opponent.color:
-                        return False
-                return True
-        else:
-            if position.y - self.y == -1 and position.x - self.x == 0:
-                opponent = board.get_figure(Ceil(position.x, position.y))
-                if opponent:
-                    if self.color == opponent.color:
-                        return False
-                    if self.color != opponent.color:
-                        return False
-                return True
 
+    START_ROW = {
+        'WHITE': 6,
+        'BLACK': 1
+    }
+    MOVE_DIRECTION = {
+        'WHITE': -1,
+        'BLACK': 1
+    }
+
+    def can_move(self, position, board):
+        figure_on_position = board.get_figure(Ceil(position.x, position.y))
+        if figure_on_position:
+            if not self.is_same(figure_on_position.color):
+                if abs(self.x - position.x) == 1 and (self.y + self.MOVE_DIRECTION[self.color] == position.y):
+                    return True
+            else:
+                return False
+        if self.y == self.START_ROW[self.color]:
+            return (self.y + 2 * self.MOVE_DIRECTION[self.color] == position.y and self.x == position.x) or \
+                   (self.y + self.MOVE_DIRECTION[self.color] == position.y and self.x == position.x)
+        else:
+            return self.y + self.MOVE_DIRECTION[self.color] == position.y and self.x == position.x

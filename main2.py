@@ -5,6 +5,7 @@ from Ceil import Ceil
 
 
 k = 0
+current_directory = os.path.abspath(os.getcwd())
 active_chess = None
 pygame.init()
 size = width, height = 800, 800
@@ -14,7 +15,7 @@ passive_color = 'BLACK'
 
 
 def load_image(name):
-    fullname = os.path.join('../data', name)
+    fullname = os.path.join(current_directory, 'data', name)
     image = pygame.image.load(fullname)
     return pygame.transform.scale(image, (80, 80))
 
