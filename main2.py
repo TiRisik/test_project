@@ -17,7 +17,7 @@ passive_color = 'BLACK'
 
 def draw_letters_and_numbers(screen):
     font = pygame.font.Font(None, 30)
-    k, k1 = 0, 1
+    g, k1 = 0, 1
     for i in range(2):
         if i:
             texts = letters.copy()
@@ -27,11 +27,10 @@ def draw_letters_and_numbers(screen):
             x, y = 5, 5
         for j in range(8):
             text = font.render(str(texts[j]), True, (128, 128, 128))
-            text_x = x + j * 100 * k
+            text_x = x + j * 100 * g
             text_y = y + j * 100 * k1
             screen.blit(text, (text_x, text_y))
-
-        k, k1 = 1, 0
+        g, k1 = 1, 0
 
 
 def load_image(name):
@@ -77,12 +76,8 @@ if __name__ == '__main__':
                             k = 0
                             active_color, passive_color = passive_color, active_color
                 else:
-                    if not figure:
-                        board.move_figure(active_chess, selected_coordinate, board)
-                        k = 1
-                    else:
-                        board.move_figure(active_chess, selected_coordinate, board)
-                        k = 1
+                    board.move_figure(active_chess, selected_coordinate, board)
+                    k = 1
         draw_letters_and_numbers(screen)
         pygame.display.flip()
     pygame.quit()
