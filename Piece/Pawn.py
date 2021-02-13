@@ -1,6 +1,8 @@
 from Piece.Piece import Piece
 from Ceil import Ceil
 
+
+class Pawn(Piece):
     def can_move(self, position, board):
         if self.y == 1:
             if position.y - self.y == 1 and position.x - self.x == 0 or position.y - self.y == 2 and position.x - self.x == 0:
