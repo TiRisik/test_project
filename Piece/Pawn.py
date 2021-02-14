@@ -3,7 +3,6 @@ from Ceil import Ceil
 
 
 class Pawn(Piece):
-
     START_ROW = {
         'WHITE': 6,
         'BLACK': 1
@@ -26,3 +25,8 @@ class Pawn(Piece):
                    (self.y + self.MOVE_DIRECTION[self.color] == position.y and self.x == position.x)
         else:
             return self.y + self.MOVE_DIRECTION[self.color] == position.y and self.x == position.x
+
+    def transformation_pawn(self):
+        if self.y == 7 or self.y == 0:
+            return True
+        return False

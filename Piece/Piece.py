@@ -18,3 +18,6 @@ class Piece:
 
     def can_move(self, position, board):
         pass
+
+    def transformation_pawn(self):
+        return False
