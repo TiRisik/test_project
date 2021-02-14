@@ -21,3 +21,6 @@ class Piece:
 
     def transformation_pawn(self):
         return False
+
+    def return_name(self):
+        return 'piece'

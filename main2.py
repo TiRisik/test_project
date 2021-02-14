@@ -95,9 +95,10 @@ if __name__ == '__main__':
                     if figure and figure.color == active_color:
                         active_chess = figure
                         k = 0
-                        active_color, passive_color = passive_color, active_color
                 else:
                     board.move_figure(active_chess, selected_coordinate, board)
+                    if board.board[selected_coordinate.x][selected_coordinate.y] == active_chess:
+                        active_color, passive_color = passive_color, active_color
                     k = 1
                 if figure:
                     if figure.transformation_pawn():

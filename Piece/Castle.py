@@ -6,6 +6,11 @@ class Castle(Piece):
     def check(self, position, board, x, y):
         if figure := board.get_figure(Ceil(position.x, position.y)):
             if self.is_same(figure.color):
+                if figure.return_name() == 'King':
+                    dx = 1 if position.x > self.x else -1
+                    board.add_figure(self, Ceil(position.x - dx, position.y))
+                    board.board[self.x][self.y] = None
+                    board.board[position.x - dx * 2][position.y], board.board[position.x][position.y] = figure, None
                 return False
         if x:
             dy = 1 if position.y > self.y else -1
@@ -32,3 +37,6 @@ class Castle(Piece):
         elif position.y == self.y:
             return self.check(position, board, False, True)
         return False
+
+    def return_name(self):
+        return 'Castle'
